@@ -12,13 +12,13 @@ return new class extends Migration
     public function up()
 {
     Schema::create('postagem', function (Blueprint $table) {
-        $table->string('tipo_cadastro');      // doacao ou perdido
-        $table->string('tipo_animal');        // cachorro, gato, outro
+        $table->string('tipo_cadastro');
+        $table->string('tipo_animal');
         $table->string('outro_animal')->nullable();
-        $table->string('tem_nome');           // sim ou nao
+        $table->string('tem_nome');
         $table->string('nome_pet')->nullable();
         $table->string('raca')->nullable();
-        $table->string('genero');             // macho ou fêmea
+        $table->string('genero');
         $table->string('idade')->nullable();
         $table->string('contato');
         $table->string('ultima_localizacao')->nullable();
