@@ -18,6 +18,7 @@
 </section>
  
 <script>
+  
   document.addEventListener('DOMContentLoaded', () => {
     const inputArquivo = document.getElementById('inputArquivo');
     const previewContainer = document.getElementById('preview-imagens');
@@ -56,37 +57,39 @@
 </script>
  
     <section class="right-panel">
-      <form method="POST" action="{{ route('postagem.store') }}" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('postagem.store') }}">
         @csrf
-        <label for="tipo-cadastro">Tipo de cadastro</label>
-        <select name="tipo-cadastro" id="tipo-cadastro" onchange="gerenciarCamposPerdido()">
+        
+        <label for="tipo_cadastro">Tipo de cadastro</label>
+        <select name="tipo_cadastro" id="tipo_cadastro" onchange="gerenciarCamposPerdido()">
           <option value="" disabled selected>Ex: Doação, Perdido</option>
           <option value="doacao">Doação</option>
           <option value="perdido">Perdido</option>
         </select>
  
-        <label for="tipo-animal">Tipo de animal</label>
-        <select name="tipo-animal" id="tipo-animal" onchange="verificarOutroTipo()">
+        <label for="tipo_animal">Tipo de animal</label>
+        <select name="tipo_animal" id="tipo_animal" onchange="verificarOutroTipo()">
           <option value="" disabled selected>Ex: Cachorro, Gato</option>
           <option value="cachorro">Cachorro</option>
           <option value="gato">Gato</option>
           <option value="outro">Outro</option>
         </select>
  
-        <label for="tem-nome">O pet tem nome?</label>
-        <select id="tem-nome" onchange="mostrarCampoNome()">
-          <option value="">Selecione</option>
-          <option value="sim">Sim</option>
-          <option value="nao">Não</option>
-        </select>
+         <label for="tem_nome">O pet tem nome?</label>
+      <select id="tem_nome">
+        <option value="">Selecione</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+      </select>
  
-        <div id="campo-nome" style="display: none;">
-          <label id="nome" >Nome do pet</label>
-          <input type="text" placeholder="Digite o nome do pet" />
-        </div>
+      <div id="campo-nome" style="display: none;">
+        <label for="nome_pet">Nome do pet</label>
+        <input type="text" id="nome_pet" name="nome_pet" placeholder="Digite o nome do pet" />
+      </div>
+ 
  
         <label>Raça</label>
-        <input type="text" placeholder="Ex: Labrador, Vira-lata, Pintcher" />
+        <input type="text" name="raca" placeholder="Ex: Labrador, Vira-lata, Pintcher" />
  
         <div class="campos-lado-a-lado">
           <div>
@@ -100,7 +103,7 @@
  
           <div>
             <label for="idade">Idade</label>
-            <input type="text" placeholder="Ex: 05 meses, 5 anos" />
+            <input type="text" name="idade" placeholder="Ex: 05 meses, 5 anos" />
           </div>
         </div>
  
@@ -178,19 +181,19 @@
 </div>
  
         <label>Contato com tutor</label>
-        <input type="text" placeholder="Ex: Telefone; Email; Whatsapp." />
+        <input type="text" name="contato" placeholder="Ex: Telefone; Email; Whatsapp." />
  
         <div id="campo-ultima-localizacao" style="display: none;">
           <label for="ultima-localizacao">Última localização</label>
-          <input type="text" id="ultima-localizacao" />
+          <input type="text" name="ultima_localizacao" id="ultima-localizacao" />
         </div>
  
         <label>Informações adicionais</label>
-        <textarea rows="4"></textarea>
+        <textarea name="informacoes" rows="4"></textarea>
  
         <button type="submit" class="botao-publicar">Publicar</button>
       </form>
-      
+
     </section>
  
      <button type="submit" class="botao-publicar-mobile">Publicar</button>

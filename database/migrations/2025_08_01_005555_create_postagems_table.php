@@ -24,6 +24,7 @@ return new class extends Migration
         $table->string('ultima_localizacao')->nullable();
         $table->text('informacoes')->nullable();
         $table->string('foto')->nullable();
+        $table->timestamps();
     });
 }
 
