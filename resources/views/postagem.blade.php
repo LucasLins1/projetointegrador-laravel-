@@ -3,20 +3,7 @@
 <h1 style="text-align: center;">CADASTRO DE PET</h1>
  
   <main class="container postcont">
-   <section class="left-panel">
-    <form id="form-upload-fotos" action="#" method="POST" enctype="multipart/form-data">
-        <div class="upload-box">
-            <span>📷</span>
-            <p>Envie uma ou mais fotos do pet</p>
-            <div class="input-file-container">
-                <label for="inputArquivo" class="custom-file-upload">Selecionar fotos</label>
-                <input type="file" name="foto" id="inputArquivo" multiple accept="image/*">
-            </div>
-            <div id="preview-imagens" class="preview-imagens-container"></div>
-        </div>
-    </form>
-</section>
- 
+   
 <script>
   
   document.addEventListener('DOMContentLoaded', () => {
@@ -55,10 +42,52 @@
     });
 });
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const selectTemNome = document.getElementById('tem_nome');
+    const campoNome = document.getElementById('campo-nome');
+
+    selectTemNome.addEventListener('change', function() {
+        if (this.value === 'sim') {
+            campoNome.style.display = 'block';
+        } else {
+            campoNome.style.display = 'none';
+        }
+    });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tipoCadastro = document.getElementById('tipo_cadastro');
+    const campoUltimaLocalizacao = document.getElementById('campo-ultima-localizacao');
+
+    tipoCadastro.addEventListener('change', function() {
+        if (this.value === 'perdido') {
+            campoUltimaLocalizacao.style.display = 'block';
+        } else {
+            campoUltimaLocalizacao.style.display = 'none';
+        }
+    });
+});
+</script>
  
     <section class="right-panel">
-      <form method="POST" action="{{ route('postagem.store') }}">
+      <form method="POST" action="{{ route('postagem.store') }}" enctype="multipart/form-data">
         @csrf
+
+        <div class="left-panel">
+        <div class="upload-box">
+            <span>📷</span>
+            <p>Envie uma ou mais fotos do pet</p>
+            <div class="input-file-container">
+                <label for="inputArquivo" class="custom-file-upload">Selecionar fotos</label>
+                <input type="file" name="foto" id="inputArquivo" accept="image/*">
+            </div>
+            <div id="preview-imagens" class="preview-imagens-container"></div>
+        </div>
+        </div>
         
         <label for="tipo_cadastro">Tipo de cadastro</label>
         <select name="tipo_cadastro" id="tipo_cadastro" onchange="gerenciarCamposPerdido()">
@@ -76,7 +105,7 @@
         </select>
  
          <label for="tem_nome">O pet tem nome?</label>
-      <select id="tem_nome">
+      <select id="tem_nome" name="tem_nome">
         <option value="">Selecione</option>
         <option value="sim">Sim</option>
         <option value="nao">Não</option>
