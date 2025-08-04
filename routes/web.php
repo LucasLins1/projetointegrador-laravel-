@@ -8,7 +8,7 @@ use App\Http\Controllers\PostagemController;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 
 // Header
 Route::get('/cadastro', function () {

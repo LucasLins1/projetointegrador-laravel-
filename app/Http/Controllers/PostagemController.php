@@ -17,16 +17,20 @@ class PostagemController extends Controller
     $data = $request->validate([
         'tipo_cadastro' => 'required|string',
         'tipo_animal' => 'required|string',
-        'outro_animal' => 'nullable|string',
         'tem_nome' => 'required|string',
-        'nome_pet' => 'nullable|string',
-        'raca' => 'nullable|string',
+        'nome_pet' => 'required_if:tem_nome,sim|string|nullable',
+        'raca' => 'required|string',
         'genero' => 'required|string',
-        'idade' => 'nullable|string',
+        'idade' => 'required|string',
         'contato' => 'required|string',
-        'ultima_localizacao' => 'nullable|string',
+        'ultima_localizacao' => 'required_if:tipo_cadastro,perdido|string|nullable',
         'informacoes' => 'nullable|string',
-        'foto' => 'nullable|image|max:2048'
+        'foto' => 'required|image|max:2048'
+    ], [
+        'required' => 'O campo :attribute é obrigatório.',
+        'required_if' => 'O campo :attribute é obrigatório.',
+        'image' => 'A foto deve ser uma imagem.',
+        'max' => 'A foto deve ter no máximo 2MB.'
     ]);
 
     // Upload da imagem
@@ -36,6 +40,6 @@ class PostagemController extends Controller
 
     Postagem::create($data);
 
-    return redirect()->back()->with('success', 'Pet cadastrado com sucesso!');
+    return redirect()->route('index')->with('success', 'Pet cadastrado com sucesso!');
 }
 }

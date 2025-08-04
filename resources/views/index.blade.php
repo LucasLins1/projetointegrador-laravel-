@@ -1,5 +1,11 @@
 @include("components.header")
 
+@if(session('success'))
+    <script>
+        alert("{{ session('success') }}");
+    </script>
+@endif
+
 <!-- Carrossel topo -->
 
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
